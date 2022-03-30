@@ -18,7 +18,7 @@ export default function Login({ callback }){
             }
             let promisse = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', obj);
             promisse.then((response) => {
-                callback(response.data.token);
+                callback(response.data.token, response.data.image);
                 navigate('/habitos');
             });
             promisse.catch(() => {
