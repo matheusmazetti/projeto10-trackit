@@ -35,7 +35,7 @@ export default function Login({ callback }){
             <img src='assets/Group 8.svg' alt='logo' />
             <input placeholder='  email' type='text' value={email} onChange={e => setEmail(e.target.value)} disabled={disable} />
             <input placeholder='  senha' type='password' value={password} onChange={e => setPassword(e.target.value)} disabled={disable} />
-            <button onClick={enviarDados}>{(disable)? <ThreeDots color="white" height={90} width={90} />: "Entrar"}</button>
+            <button onClick={enviarDados} disabled={disable} >{(disable)? <ThreeDots color="white" height={90} width={90} />: "Entrar"}</button>
             <Link to='/cadastro' >Não tem uma conta? Cadastre-se!</Link>
         </S.Content>
     )
