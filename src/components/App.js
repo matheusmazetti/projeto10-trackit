@@ -8,7 +8,6 @@ import Context from "./Context";
 
 export default function App(){
     const [userObj, setUserObj] = React.useState({});
-    
     return(
         <Context.Provider value={{userObj, setUserObj}}>
             <BrowserRouter>

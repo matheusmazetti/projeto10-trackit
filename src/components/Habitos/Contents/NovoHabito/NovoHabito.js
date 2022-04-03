@@ -3,7 +3,7 @@ import React from 'react';
 import Context from '../../../Context';
 import axios from 'axios';
 
-export default function NovoHabito(){
+export default function NovoHabito({ callback }){
     const [days, setDays] = React.useState([]);
     const [name, setName] = React.useState('');
     const context = React.useContext(Context);
@@ -30,7 +30,7 @@ export default function NovoHabito(){
             days:days
         }
         let promisse = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', obj, config);
-        promisse.then(() => alert('tudo certo'));
+        promisse.then(callback);
     }
 
     return(

@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import Context from "../../../Context";
 
-export default function ListaHabitos(){
+export default function ListaHabitos({ reload }){
     const [obj, setObj] = React.useState([]);
     const context = React.useContext(Context);
     React.useEffect(() => {
@@ -14,7 +14,7 @@ export default function ListaHabitos(){
         }
         let promisse = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', config);
         promisse.then((response) => setObj(response.data));
-    }, []);
+    }, [context.userObj.token, reload]);
 
     function Habitos(){
         return(
