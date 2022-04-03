@@ -4,20 +4,20 @@ import React from 'react';
 import Login from "./Login/Login";
 import Cadastro from "./Cadastro/Cadastro";
 import Habitos from "./Habitos/Habitos";
+import Context from "./Context";
 
 export default function App(){
-    const [token, setToken] = React.useState('');
-    const [image, setImage] = React.useState('');
+    const [userObj, setUserObj] = React.useState({});
+    
     return(
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Login callback={(token, image) => {
-                    setToken(token)
-                    setImage(image)
-                    }} />} />
-                <Route path="/cadastro" element={<Cadastro />} />
-                <Route path="/habitos" element={<Habitos token={token} image={image} />} />
-            </Routes>
-        </BrowserRouter>
+        <Context.Provider value={{userObj, setUserObj}}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/cadastro" element={<Cadastro />} />
+                    <Route path="/habitos" element={<Habitos />} />
+                </Routes>
+            </BrowserRouter>
+        </Context.Provider>
     )
 }

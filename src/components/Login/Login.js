@@ -3,12 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import React from 'react';
 import axios from 'axios';
+import Context from '../Context';
 
 export default function Login({ callback }){
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [disable, setDisable] =React.useState(false);
     const navigate = useNavigate();
+    const context = React.useContext(Context);
     function enviarDados(){
         if(email !== '' && password !== ''){
             setDisable(true);
@@ -18,7 +20,7 @@ export default function Login({ callback }){
             }
             let promisse = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', obj);
             promisse.then((response) => {
-                callback(response.data.token, response.data.image);
+                context.setUserObj(response.data);
                 navigate('/habitos');
             });
             promisse.catch(() => {

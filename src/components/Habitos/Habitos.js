@@ -1,13 +1,12 @@
 import Header from "./Header/Header";
 import React from 'react';
-import Content from "./Content/Content";
+import Contents from "./Contents/Contents";
 
-export default function Habitos({ token, image }){
-
+export default function Habitos(){
     return(
         <>
-            <Header image={image} />
-            <Content />
+            <Header />
+            <Contents />
         </>
     )
 }
