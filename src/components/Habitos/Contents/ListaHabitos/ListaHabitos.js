@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Context from "../../../Context";
+import * as S from './ListaHabitosStyle';
 
 export default function ListaHabitos({ reload }){
     const [obj, setObj] = React.useState([]);
@@ -21,18 +22,27 @@ export default function ListaHabitos({ reload }){
             <div>
                 {obj.map(habito => {
                     return(
-                        <Habito name={habito.name}/>
+                        <Habito name={habito.name} days={habito.days} />
                     )
                 })}
             </div>
         )
     }
 
-    function Habito({ name }){
+    function Habito({ name, days }){
         return(
-            <div>
+            <S.Content>
                 <h1>{name}</h1>
-            </div>
+                <S.Buttons>
+                <button className={(days.includes(0))?'selecionado':''} >D</button>
+                <button className={(days.includes(1))?'selecionado':''} >S</button>
+                <button className={(days.includes(2))?'selecionado':''} >T</button>
+                <button className={(days.includes(3))?'selecionado':''} >Q</button>
+                <button className={(days.includes(4))?'selecionado':''} >Q</button>
+                <button className={(days.includes(5))?'selecionado':''} >S</button>
+                <button className={(days.includes(6))?'selecionado':''} >S</button>
+                </S.Buttons>
+            </S.Content>           
         )
     }
     console.log(obj);
