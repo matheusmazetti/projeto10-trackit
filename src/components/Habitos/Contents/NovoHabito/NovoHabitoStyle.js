@@ -50,6 +50,11 @@ export const Buttons = styled.div`
         line-height: 25px;
         color: #DBDBDB;
     }
+
+    .selecionado{
+        background: #CFCFCF;
+        color: #ffffff;
+    }
 `;
 
 export const LowerButtons = styled.div`
@@ -88,4 +93,5 @@ export const LowerButtons = styled.div`
         color: #ffffff;
         margin-right: 20px;
     }
+
 `;
