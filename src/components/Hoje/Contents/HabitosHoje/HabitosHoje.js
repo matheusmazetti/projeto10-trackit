@@ -1,4 +1,5 @@
 import axios from 'axios';
+import dayjs from 'dayjs';
 import React from 'react';
 import Context from '../../../Context';
 import * as S from './HabitosHojeStyles';
@@ -7,6 +8,8 @@ export default function HabitosHoje(){
     const [obj, setObj] = React.useState([]);
     const context = React.useContext(Context);
     const [reload, setReload] = React.useState(0);
+    let total = 0; 
+    let feitos = 0;
 
     React.useEffect(() => {
         let token = context.userObj.token;
@@ -18,10 +21,12 @@ export default function HabitosHoje(){
         let promisse = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today', config);
         promisse.then((response) => {
             setObj(response.data)
-            setReload(0);
+            setReload(0)
+            total = 0
         });
     },[context, reload]);
 
+    
     function setDone(id){
         let token = context.userObj.token;
         let config = {
@@ -45,6 +50,8 @@ export default function HabitosHoje(){
     }
 
     function Habito({ name, current, highest, done, id }){
+        console.log(total);
+        console.log(feitos);
         return(
             <S.Habito>
                 <div>
@@ -64,11 +71,17 @@ export default function HabitosHoje(){
     }
 
     function Today(){
+        feitos = 0;
         return(
             <S.Habitos>
-                {obj.map((habito) => 
+                {obj.map((habito) => {
+                    total = obj.length;
+                    if(habito.done){
+                        feitos++;
+                    }
+                    return(
                     <Habito name={habito.name} current={habito.currentSequence} highest={habito.highestSequence} done={habito.done} id={habito.id} />
-                )}
+                )})}
             </S.Habitos>
         )
     }
